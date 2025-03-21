@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tanseer Khan - Software Engineer</title>
+    <meta name="description" content="Digital Business Card - Tanseer Khan">
+    <meta property="og:title" content="Tanseer Khan - DevOps Engineer">
+    <meta property="og:description" content="Connect with me on social media">
+    <meta property="og:image" content="icons/profile.jpg">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #00081A;
+            --secondary-color: #1E293B;
+            --text-color: #FFFFFF;
+            --accent-color: #3B82F6;
+            --border-color: #FFFFFF;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--primary-color);
+            min-height: 100vh;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: var(--text-color);
+        }
+
+        .container {
+            width: 100%;
+            max-width: 380px;
+            padding: 2rem 1.5rem;
+        }
+
+        .profile-section {
+            text-align: center;
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+
+        .profile-image-container {
+            width: 96px;
+            height: 96px;
+            margin: 0 auto 1rem;
+            position: relative;
+            border-radius: 50%;
+            padding: 3px;
+            background-color: var(--border-color);
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+        }
+
+        .profile-image {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .profile-image-container:hover .profile-image {
+            transform: scale(1.05);
+        }
+
+        .name {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+
+        .title {
+            color: #94A3B8;
+            font-size: 0.875rem;
+        }
+
+        .bio {
+            margin-top: 0.5rem;
+            font-size: 0.875rem;
+            line-height: 1.4;
+        }
+
+        .action-buttons {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.75rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .action-button {
+            background-color: var(--secondary-color);
+            color: var(--text-color);
+            border: none;
+            border-radius: 0.5rem;
+            padding: 0.625rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-size: 0.875rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .action-button i {
+            font-size: 1rem;
+        }
+
+        .action-button.full-width {
+            grid-column: span 2;
+        }
+
+        .action-button:hover {
+            background-color: var(--accent-color);
+            transform: translateY(-2px);
+        }
+
+        .social-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.25rem;
+            justify-items: center;
+        }
+
+        .social-icon {
+            width: 3.5rem;
+            height: 3.5rem;
+            border-radius: 0.75rem;
+            overflow: hidden;
+            transition: all 0.2s;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: var(--secondary-color);
+            position: relative;
+        }
+
+        .social-icon:hover {
+            transform: scale(1.1) rotate(5deg);
+            background-color: var(--accent-color);
+        }
+
+        .social-icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .social-icon .tooltip {
+            position: absolute;
+            bottom: -30px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 0.75rem;
+            opacity: 0;
+            transition: opacity 0.2s;
+            pointer-events: none;
+            white-space: nowrap;
+        }
+
+        .social-icon:hover .tooltip {
+            opacity: 1;
+        }
+
+        .theme-toggle {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: none;
+            border: none;
+            color: var(--text-color);
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .theme-toggle:hover {
+            transform: rotate(30deg);
+        }
+
+        .skills {
+            margin-top: 1.5rem;
+            text-align: center;
+        }
+
+        .skills h3 {
+            margin-bottom: 0.5rem;
+            font-size: 1rem;
+        }
+
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .skill-tag {
+            background-color: var(--secondary-color);
+            color: var(--text-color);
+            padding: 0.25rem 0.5rem;
+            border-radius: 1rem;
+            font-size: 0.75rem;
+        }
+
+        @media (max-width: 360px) {
+            .container {
+                padding: 1.5rem 1rem;
+            }
+
+            .social-grid {
+                gap: 1rem;
+            }
+
+            .social-icon {
+                width: 3rem;
+                height: 3rem;
+            }
+        }
+
+        @media (min-width: 400px) {
+            .social-icon {
+                width: 4rem;
+                height: 4rem;
+            }
+        }
+
+        .dark-mode {
+            --primary-color: #F3F4F6;
+            --secondary-color: #E5E7EB;
+            --text-color: #1F2937;
+            --accent-color: #2563EB;
+            --border-color: #1F2937;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <button class="theme-toggle" onclick="toggleTheme()">
+            <i class="fas fa-moon"></i>
+        </button>
+
+        <!-- Profile Section -->
+        <div class="profile-section">
+            <div class="profile-image-container">
+                <img src="icons/profile.jpg" alt="Profile" class="profile-image">
+            </div>
+            <h1 class="name">Tanseer Khan</h1>
+            <p class="title">Software Engineer</p>
+            <p class="bio">Passionate about creating innovative solutions and building scalable applications.</p>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="action-buttons">
+            <button class="action-button" onclick="window.location.href='tel:+1234567890'">
+                <i class="fas fa-phone"></i>
+                Call
+            </button>
+            <button class="action-button" onclick="window.location.href='sms:+1234567890'">
+                <i class="fas fa-comment"></i>
+                Message
+            </button>
+            <button class="action-button full-width" onclick="saveContact()">
+                <i class="fas fa-user-plus"></i>
+                Save Contact
+            </button>
+        </div>
+
+        <!-- Social Icons Grid -->
+        <div class="social-grid">
+            <!-- Replace the URLs with your S3 bucket paths and social media links -->
+            <a href="https://instagram.com/yourusername" target="_blank" class="social-icon">
+                <img src="icons/instagram.png" alt="Instagram">
+                <span class="tooltip">Instagram</span>
+            </a>
+            <a href="https://linkedin.com/in/yourusername" target="_blank" class="social-icon">
+                <img src="icons/linkedin.png" alt="LinkedIn">
+                <span class="tooltip">LinkedIn</span>
+            </a>
+            <a href="https://github.com/yourusername" target="_blank" class="social-icon">
+                <img src="icons/github.png" alt="GitHub">
+                <span class="tooltip">GitHub</span>
+            </a>
+            <a href="https://twitter.com/yourusername" target="_blank" class="social-icon">
+                <img src="icons/twitter.png" alt="Twitter">
+                <span class="tooltip">Twitter</span>
+            </a>
+            <a href="https://snapchat.com/add/yourusername" target="_blank" class="social-icon">
+                <img src="icons/snapchat.png" alt="Snapchat">
+                <span class="tooltip">Snapchat</span>
+            </a>
+            <a href="https://facebook.com/yourusername" target="_blank" class="social-icon">
+                <img src="icons/facebook.png" alt="Facebook">
+                <span class="tooltip">Facebook</span>
+            </a>
+            <a href="https://wa.me/1234567890" target="_blank" class="social-icon">
+                <img src="icons/whatsapp.png" alt="WhatsApp">
+                <span class="tooltip">WhatsApp</span>
+            </a>
+            <a href="mailto:your.email@gmail.com" class="social-icon">
+                <img src="icons/gmail.png" alt="Gmail">
+                <span class="tooltip">Email</span>
+            </a>
+            <a href="https://your-s3-bucket.s3.amazonaws.com/assets/resume.pdf" target="_blank" class="social-icon">
+                <img src="icons/portfolio.png" alt="Resume">
+                <span class="tooltip">Resume</span>
+            </a>
+            <a href="https://phonepe.com" target="_blank" class="social-icon">
+                <img src="icons/phonepe.png" alt="PhonePe">
+                <span class="tooltip">PhonePe</span>
+            </a>
+            <a href="https://youtube.com/c/yourusername" target="_blank" class="social-icon">
+                <img src="icons/youtube.png" alt="YouTube">
+                <span class="tooltip">YouTube</span>
+            </a>
+            <a href="https://open.spotify.com/user/yourusername" target="_blank" class="social-icon">
+                <img src="icons/spotify.png" alt="Spotify">
+                <span class="tooltip">Spotify</span>
+            </a>
+        </div>        
+    </div>
+
+    <script>
+        function saveContact() {
+            const vcard = `BEGIN:VCARD
+VERSION:3.0
+FN:Tanseer Khan
+TITLE:Software Engineer
+TEL:+1234567890
+EMAIL:your.email@gmail.com
+URL;type=INSTAGRAM:https://instagram.com/yourusername
+URL;type=LINKEDIN:https://linkedin.com/in/yourusername
+END:VCARD`;
+            
+            const blob = new Blob([vcard], { type: 'text/vcard' });
+            const url = window.URL.createObjectURL(blob);
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = 'tanseer-khan.vcf';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            window.URL.revokeObjectURL(url);
+        }
+
+        function toggleTheme() {
+            document.body.classList.toggle('dark-mode');
+            const themeIcon = document.querySelector('.theme-toggle i');
+            themeIcon.classList.toggle('fa-moon');
+            themeIcon.classList.toggle('fa-sun');
+        }
+    </script>
+</body>
+</html>
